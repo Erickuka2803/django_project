@@ -1,0 +1,16 @@
+from django.shortcuts import render
+
+# Create your views here.
+# scoring/views.py
+from django.shortcuts import render, get_object_or_404
+from django.http import JsonResponse
+from .models import UserScore
+
+def update_user_score(request, user_id, points):
+    user_score = get_object_or_404(UserScore, id=user_id)
+    user_score.update_score(points)
+    
+    return JsonResponse({
+        "user": user_score.user_name,
+        "new_score": user_score.score,
+    })

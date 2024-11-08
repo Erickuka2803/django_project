@@ -1,0 +1,16 @@
+# scoring/urls.py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('update-score/<int:user_id>/<int:points>/', views.update_user_score, name='update_user_score'),
+]
+
+# myproject/urls.py
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('scoring/', include('scoring.urls')),  # Include the scoring app URLs
+]

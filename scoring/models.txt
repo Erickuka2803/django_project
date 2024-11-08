@@ -1,0 +1,31 @@
+from django.db import models
+
+# Create your models here.
+# scoring/models.py
+from django.db import models
+
+class UserScore(models.Model):
+    user_name = models.CharField(max_length=100)
+    score = models.IntegerField(default=0)
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user_name} - {self.score}"
+
+# scoring/models.py
+from django.db import models
+
+class UserScore(models.Model):
+    user_name = models.CharField(max_length=100)
+    score = models.IntegerField(default=0)
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user_name} - {self.score}"
+
+    def update_score(self, points):
+        """
+        Update the user's score by adding or subtracting points.
+        """
+        self.score += points
+        self.save()
